@@ -1,7 +1,12 @@
 .sidebar {
-  position: fixed;
-  left: 0%;
-  width: 20%;
-  background-color: crimson;
-  height: 100%;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  top: 127px;
+  bottom: 0%;
+  padding: 2rem 0 0 2rem;
+  /* width: 20vw; */
+  background-color: violet;
+  height: calc(100%-100px);
 }
