@@ -1,4 +1,4 @@
-import stickyheader from "../styles/stickycontenthead.module.css";
+import stickyheader from "../styles/stickycontenthead.module.scss";
 function ContentStickyHeader({ switchsides }) {
   return (
     <div style={{ position: switchsides }} className={stickyheader.container}>

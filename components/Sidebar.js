@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import sidebarStyles from "../styles/sidebar.module.css";
+import sidebarStyles from "../styles/sidebar.module.scss";
 function Sidebar({ setswitchsides, switchsides }) {
   React.useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -16,7 +16,10 @@ function Sidebar({ setswitchsides, switchsides }) {
       style={{ position: switchsides }}
       className={sidebarStyles.sidebar}
     >
-      <div id="side1">sides and Beverages</div>
+      <div id="bubble" className={sidebarStyles.bubble}></div>
+      <div className={sidebarStyles.item} id="side1">
+        sides and Beverages
+      </div>
       <div id="side2">sides and Beverages</div>
       <div id="side3">sides and Beverages</div>
       <div id="side4">sides and Beverages</div>

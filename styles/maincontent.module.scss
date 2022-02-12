@@ -1,0 +1,12 @@
+.mainContent {
+  background-color: brown;
+  width: 84%;
+  align-items: stretch;
+  margin-left: auto;
+  .sections {
+    height: 100vh;
+    background-color: cyan;
+    width: 100%;
+    margin: 1rem 0;
+  }
+}

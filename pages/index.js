@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React, { useState } from "react";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Home.module.scss";
 import Maincontent from "../components/Maincontent";
 import Sidebar from "../components/Sidebar";
 import ContentStickyHeader from "../components/ContentStickyHeader";

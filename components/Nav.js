@@ -1,4 +1,4 @@
-import navStyles from "../styles/nav.module.css";
+import navStyles from "../styles/nav.module.scss";
 import { SearchOutlined, Shop } from "@material-ui/icons";
 function Nav() {
   return (
