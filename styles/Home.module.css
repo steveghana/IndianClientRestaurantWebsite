@@ -12,20 +12,21 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-  gap: 2rem;
+  gap: 1rem;
 }
 .homeCarousel {
   width: 100%;
   height: 300px;
+  background-color: yellow;
+  z-index: 2;
 }
 .contentContainer {
-  width: 1300px;
-  background-color: yellow;
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
   position: relative;
   margin: auto;
-  height: 100vh;
-  display: flex;
+  height: 100%;
 }
 
 .footer {
