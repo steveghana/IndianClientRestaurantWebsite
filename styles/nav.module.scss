@@ -1,3 +1,4 @@
+@import "../styles/mixins";
 .nav {
   width: 100%;
   position: fixed;
@@ -11,15 +12,17 @@
 
 .ul {
   max-width: 80%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex($alignItems: center, $justifyContent: center, $gap: 3rem);
   height: 60px;
   margin: auto;
   background-color: rgb(255, 255, 255);
   list-style-type: none;
   padding: 2rem;
-  gap: 3rem;
+}
+@media (max-width: 1024px) {
+  .ul {
+    max-width: 100%;
+  }
 }
 .logo {
   margin-right: auto;
@@ -27,8 +30,7 @@
   font-family: "Morganite", Arial, Helvetica, sans-serif;
 }
 .nav ul li {
+  @include flex($alignItems: center, $gap: 0.5rem);
   text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  cursor: pointer;
 }

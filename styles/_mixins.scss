@@ -1,0 +1,12 @@
+@mixin flex(
+  $flexDirection: unset,
+  $justifyContent: unset,
+  $alignItems: unset,
+  $gap: 0rem
+) {
+  display: flex;
+  flex-direction: $flexDirection;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+  gap: $gap;
+}

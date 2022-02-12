@@ -1,44 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import { checkingForInterSection } from "./Utilities";
 import mainContentStyles from "../styles/maincontent.module.scss";
 function Maincontent() {
-  const [dynamicwidth, setdynamicwidth] = useState(200);
-  let sectionId;
-  React.useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const movingObject = document.getElementById("bubble");
-          const element = document.getElementById(`side${entry.target.id}`);
-          const getCordinates = element.getBoundingClientRect();
-          const { height, width, left, right, x, y, top, bottom } =
-            getCordinates;
+  useEffect(() => {
+    checkingForInterSection();
+    gsap.registerPlugin(ScrollTrigger);
+    let proxy = { skew: 0 },
+      skewSetter = gsap.quickSetter("section", "skewY", "deg"), // fast
+      clamp = gsap.utils.clamp(-20, 20); // don't let the skew go beyond 20 degrees.
 
-          if (entry.isIntersecting) {
-            // movingObject.style.setProperty("left", `${left}px`);
-            // movingObject.style.setProperty("x", `${x}px`);
-            // movingObject.style.setProperty("y", `${y * 2}px`);
-            // // movingObject.style.setProperty("right", `${right}px`);
-            // console.log(entry.target.getBoundingClientRect());
-            movingObject.style.setProperty("height", `${height + 10}px`);
-            movingObject.style.setProperty("width", `${width + 20}px`);
-            movingObject.style.top = `${element.offsetTop}px`;
-            // movingObject.style.left = `${left}px`;
-            // movingObject.style.right = `${-right}px`;
-            movingObject.style.bottom = `${bottom}px`;
-          }
-          // else {
-          //   document.getElementById(
-          //     `side${entry.target.id}`
-          //   ).style.borderBottom = "none";
-          // }
-        });
+    ScrollTrigger.create({
+      onUpdate: (self) => {
+        let skew = clamp(self.getVelocity() / -300);
+        // only do something if the skew is MORE severe. Remember, we're always tweening back to 0, so if the user slows their scrolling quickly, it's more natural to just let the tween handle that smoothly rather than jumping to the smaller skew.
+        if (Math.abs(skew) > Math.abs(proxy.skew)) {
+          proxy.skew = skew;
+          gsap.to(proxy, {
+            skew: 0,
+            duration: 0.8,
+            ease: "power3",
+            overwrite: true,
+            onUpdate: () => skewSetter(proxy.skew),
+          });
+        }
       },
-      { threshold: 0.5 }
-    );
-    [...document.querySelectorAll("section")].forEach((item) => {
-      observer.observe(item);
     });
-  }, [sectionId]);
+
+    // make the right edge "stick" to the scroll bar. force3D: true improves performance
+    gsap.set("section", { transformOrigin: "right center", force3D: true });
+  }, []);
   return (
     <div className={mainContentStyles.mainContent}>
       <section id="1" className={mainContentStyles.sections}></section>

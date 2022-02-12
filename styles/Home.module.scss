@@ -1,18 +1,21 @@
+@import "../styles/mixins";
 .container {
+  @include flex(
+    $flexDirection: column,
+    $justifyContent: center,
+    $alignItems: center
+  );
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
 }
 
 .main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
+  @include flex(
+    $flexDirection: column,
+    $justifyContent: center,
+    $alignItems: center,
+    $gap: 1rem
+  );
 }
 .homeCarousel {
   width: 100%;
@@ -21,28 +24,14 @@
   z-index: 2;
 }
 .contentContainer {
-  display: flex;
-  justify-content: space-between;
+  @include flex($justifyContent: space-between);
   width: 80%;
   position: relative;
   margin: auto;
   height: 100%;
 }
-
-.footer {
-  position: fixed;
-  z-index: 3;
-  bottom: 0%;
-  width: 100%;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.footer a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
+@media (max-width: 1024px) {
+  .contentContainer {
+    width: 100%;
+  }
 }
