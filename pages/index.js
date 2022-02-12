@@ -1,12 +1,26 @@
 import Head from "next/head";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import gsap from "gsap";
 import styles from "../styles/Home.module.scss";
 import Maincontent from "../components/Maincontent";
 import Sidebar from "../components/Sidebar";
 import ContentStickyHeader from "../components/ContentStickyHeader";
+import icon from "../public/favicon.ico";
 export default function Home() {
   const [switchsides, setswitchsides] = useState("unset");
+  useEffect(() => {
+    const scrollUp = document.getElementById("scrollToTop");
+    // When the scroll is higher than 200 viewport height, add the show-scroll class to the a tag with the scroll-top class
+    window.addEventListener("scroll", (e) => {
+      if (window.scrollY >= 400) {
+        scrollUp.style.right = "3%";
+        return;
+      } else {
+        scrollUp.style.right = "-13%";
+      }
+    });
+  }, []);
   return (
     <div>
       <Head>
@@ -22,6 +36,9 @@ export default function Home() {
           <Sidebar setswitchsides={setswitchsides} switchsides={switchsides} />
           <Maincontent />
         </div>
+        <a href="#" id="scrollToTop" className={styles.scrollToTop}>
+          <Image src={icon} />
+        </a>
       </main>
     </div>
   );

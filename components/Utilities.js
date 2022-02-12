@@ -33,3 +33,5 @@ export const settingStickyScrollItems = (setswitchsides) => {
     }
   });
 };
+
+export const gsapSkewImgs = (gsap, ScrollTrigger) => {};
