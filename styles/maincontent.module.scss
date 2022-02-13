@@ -1,12 +1,39 @@
 .mainContent {
   background-color: brown;
-  width: 84%;
+  width: calc(100% - 220px);
   align-items: stretch;
   margin-left: auto;
   .sections {
-    height: 100vh;
     background-color: cyan;
     width: 100%;
+    padding: 1rem;
     margin: 1rem 0;
+    .categoryHeader {
+      font-size: 2.5rem;
+    }
+    .sectionContainer {
+      display: grid;
+
+      grid-template-columns: 1fr 1fr 1fr;
+      padding: 1rem;
+      gap: 1rem;
+      width: 100%;
+    }
+    @media (max-width: 1300px) {
+      .sectionContainer {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (max-width: 750px) {
+      .sectionContainer {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  .mainContent {
+    width: 100%;
   }
 }

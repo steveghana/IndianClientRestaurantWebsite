@@ -1,18 +1,19 @@
 import Head from "next/head";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import gsap from "gsap";
+
 import styles from "../styles/Home.module.scss";
 import Maincontent from "../components/Maincontent";
 import Sidebar from "../components/Sidebar";
 import ContentStickyHeader from "../components/ContentStickyHeader";
 import icon from "../public/favicon.ico";
 export default function Home() {
+  const [toggleSide, settoggleSide] = useState(false);
+
   const [switchsides, setswitchsides] = useState("unset");
   useEffect(() => {
     const scrollUp = document.getElementById("scrollToTop");
-    // When the scroll is higher than 200 viewport height, add the show-scroll class to the a tag with the scroll-top class
-    window.addEventListener("scroll", (e) => {
+    window.addEventListener("scroll", () => {
       if (window.scrollY >= 400) {
         scrollUp.style.right = "3%";
         return;
@@ -31,10 +32,18 @@ export default function Home() {
 
       <main className={styles.main}>
         <div className={styles.homeCarousel}></div>
-        <ContentStickyHeader switchsides={switchsides} />
+        <ContentStickyHeader
+          settoggleSide={settoggleSide}
+          switchsides={switchsides}
+          toggleSide={toggleSide}
+        />
         <div className={styles.contentContainer}>
-          <Sidebar setswitchsides={setswitchsides} switchsides={switchsides} />
-          <Maincontent />
+          <Sidebar
+            toggleSide={toggleSide}
+            setswitchsides={setswitchsides}
+            switchsides={switchsides}
+          />
+          <Maincontent switchsides={switchsides} />
         </div>
         <a href="#" id="scrollToTop" className={styles.scrollToTop}>
           <Image src={icon} />

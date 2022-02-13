@@ -8,15 +8,14 @@ export const checkingForInterSection = () => {
         const { height, width, bottom } = getCordinates;
 
         if (entry.isIntersecting) {
-          // const {setProperty, top, bottom} = movingObject.style
-          movingObject.style.setProperty("height", `${height + 10}px`);
-          movingObject.style.setProperty("width", `${width + 20}px`);
+          movingObject.style.height = `${height + 10}px`;
+          movingObject.style.width = `${width + 20}px`;
           movingObject.style.top = `${element.offsetTop}px`;
           movingObject.style.bottom = `${bottom}px`;
         }
       });
     },
-    { threshold: 0.5 }
+    { threshold: 0.3 }
   );
   [...document.querySelectorAll("section")].forEach((item) => {
     observer.observe(item);
@@ -34,4 +33,13 @@ export const settingStickyScrollItems = (setswitchsides) => {
   });
 };
 
-export const gsapSkewImgs = (gsap, ScrollTrigger) => {};
+export const triggerNav = (e) => {
+  if (!isMobile) return;
+  const bubble = document.getElementById("bubble");
+  const { height, width } = e.target.getBoundingClientRect();
+  bubble.style.height = `${height + 10}px`;
+  bubble.style.width = `${width + 20}px`;
+  bubble.style.top = `${e.target.offsetTop}px`;
+};
+export const toggleswitch = (switchsides) =>
+  switchsides === "unset" ? "absolute" : switchsides;
