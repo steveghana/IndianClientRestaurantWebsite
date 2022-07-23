@@ -3,6 +3,7 @@ import { useMediaQuery } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
 import { settingStickyScrollItems } from "./Utilities";
 import sidebarStyles from "../styles/sidebar.module.scss";
+import { data, nav } from "data/data";
 function Sidebar({ setswitchsides, switchsides, toggleSide }) {
   const side = useRef(null);
   const isMobile = useMediaQuery("(max-width:750px");
@@ -18,6 +19,7 @@ function Sidebar({ setswitchsides, switchsides, toggleSide }) {
     bubble.style.top = `${e.target.offsetTop}px`;
   };
   const toggleswitch = switchsides === "unset" ? "absolute" : switchsides;
+
   return (
     <>
       <div
@@ -31,36 +33,17 @@ function Sidebar({ setswitchsides, switchsides, toggleSide }) {
         className={sidebarStyles.sidebar}
       >
         <div id="bubble" className={sidebarStyles.bubble}></div>
-        <a
-          className="sidenav"
-          onClick={triggerNav}
-          href="#1"
-          className={sidebarStyles.item}
-          id="side1"
-        >
-          sides and Beverages
-        </a>
-        <a className="sidenav" onClick={triggerNav} id="side2" href="#2">
-          Cheese and burger
-        </a>
-        <a className="sidenav" onClick={triggerNav} href="#3" id="side3">
-          sides and Beverages
-        </a>
-        <a className="sidenav" onClick={triggerNav} href="#4" id="side4">
-          sides and Beverages
-        </a>
-        <a className="sidenav" onClick={triggerNav} href="#5" id="side5">
-          sides and Beverages
-        </a>
-        <a className="sidenav" onClick={triggerNav} href="#6" id="side6">
-          sides and Beverages
-        </a>
-        <a className="sidenav" onClick={triggerNav} href="#7" id="side7">
-          sides and Beverages
-        </a>
-        <a className="sidenav" onClick={triggerNav} href="#8" id="side8">
-          sides and Beverages
-        </a>
+        {nav.map((item, i) => (
+          <a
+            className="sidenav"
+            key={i}
+            onClick={triggerNav}
+            id={`side${i + 1}`}
+            href={`#${i + 1}`}
+          >
+            {item}
+          </a>
+        ))}
       </div>
     </>
   );

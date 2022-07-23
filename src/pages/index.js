@@ -1,12 +1,12 @@
 import Head from "next/head";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-
+import Footer from "../components/Footer";
 import styles from "../styles/Home.module.scss";
 import Maincontent from "../components/Maincontent";
 import Sidebar from "../components/Sidebar";
 import ContentStickyHeader from "../components/ContentStickyHeader";
-import icon from "../public/favicon.ico";
+import icon from "../../public/favicon.ico";
 export default function Home() {
   const [toggleSide, settoggleSide] = useState(false);
 
@@ -48,6 +48,7 @@ export default function Home() {
         <a href="#" id="scrollToTop" className={styles.scrollToTop}>
           <Image src={icon} />
         </a>
+        <Footer />
       </main>
     </div>
   );
